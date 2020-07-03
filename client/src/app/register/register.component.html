@@ -1,0 +1,87 @@
+<header class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills float-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/home'>Home</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink='/register'>Add User</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="">Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <h3 class="text-muted">Angular Security Demo </h3>
+</header>
+
+<div class="cotainer">
+  <form [formGroup]='userForm' (ngSubmit)='saveUser()'>
+    <div class="card mt-3">
+      <div class="card-heading bg-info text-center">
+        <h3>Create User</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group form-row">
+          <label for="firstName" class="col-md-2">Firstname</label>
+          <div class="col-md-8">
+            <input type="text" id="firstName" class="form-control" formControlName='firstName'
+              [class.is-invalid]='firstName.invalid && firstName.touched'>
+            <div *ngIf='firstName.invalid && firstName.touched'>
+              <small *ngIf="firstName.errors['required']" class='text-danger'>Firstname Is Required</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-row">
+          <label for="lastName" class="col-md-2">Lastname</label>
+          <div class="col-md-8">
+            <input type="text" id="lastName" class="form-control" formControlName='lastName'
+              [class.is-invalid]='lastName.invalid && lastName.touched'>
+            <div *ngIf='lastName.invalid && lastName.touched'>
+              <small *ngIf="lastName.errors['required']" class='text-danger'>Lastname Is Required</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-row">
+          <label for="email" class="col-md-2">Email</label>
+          <div class="col-md-8">
+            <input type="email" id="email" class="form-control" formControlName='email'
+              [class.is-invalid]='email.invalid && email.touched'>
+            <div *ngIf='email.invalid && email.touched'>
+              <small *ngIf="email.errors['required']" class='text-danger'>Email Is Required</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-row">
+          <label for="password" class="col-md-2">Password</label>
+          <div class="col-md-8">
+            <input type="password" id="password" class="form-control" formControlName='password'
+              [class.is-invalid]='password.invalid && password.touched'>
+            <div *ngIf='password.invalid && password.touched'>
+              <small *ngIf="password.errors['required']" class='text-danger'>Password Is Required</small>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-row">
+          <label for="confirmPassword" class="col-md-2">Consfirm Password</label>
+          <div class="col-md-8">
+            <input type="password" id="confirmPassword" class="form-control" formControlName='confirmPassword'
+              [class.is-invalid]='confirmPassword.invalid && confirmPassword.touched'>
+            <div *ngIf='confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)'
+              class="text-danger">
+              <small *ngIf="confirmPassword.errors['required']">
+                Confirm Password Is Required
+              </small>
+              <small *ngIf="confirmPassword.errors['compare']">
+                Password and Confirmpassword are not matched
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" type='submit' [disabled]='userForm.invalid'>Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
